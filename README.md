@@ -1,4 +1,4 @@
-<div align="center">
+<!-- <div align="center">
 
 # Hi, I'm Rudra Chothe 👋
 
@@ -127,4 +127,4 @@ I'm always open to interesting conversations and collaboration opportunities!
   <img src="https://komarev.com/ghpvc/?username=rudra0410&color=58A6FF&style=flat-square&label=Profile+Views" alt="Profile views"/>
   
   <p><sub>Made with ❤️ by Rudra Chothe</sub></p>
-</div>
+</div> -->
