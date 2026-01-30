@@ -88,7 +88,7 @@ const rudra = {
 ---
 
 <!-- Support Section -->
-<h2 align="center">☕ Support Me</h2>
+<!-- <h2 align="center">☕ Support Me</h2>
 
 <p align="center">
   If you like my work and want to support me, consider buying me a coffee! ☕
@@ -127,4 +127,4 @@ I'm always open to interesting conversations and collaboration opportunities!
   <img src="https://komarev.com/ghpvc/?username=rudra0410&color=58A6FF&style=flat-square&label=Profile+Views" alt="Profile views"/>
   
   <p><sub>Made with ❤️ by Rudra Chothe</sub></p>
-</div> -->
+</div> --> -->
