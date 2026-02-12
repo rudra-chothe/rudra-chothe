@@ -24,7 +24,7 @@
 const rudra = {
   location: "India 🇮🇳",
   role: "Full Stack Developer",
-  code: ["JavaScript", "Python", "C++", "TypeScript"],
+  code: ["JavaScript", "Python", "TypeScript"],
   technologies: {
     frontend: ["React", "Next.js", "Tailwind CSS"],
     backend: ["Node.js", "Express.js", "Flask"],
@@ -87,7 +87,6 @@ const rudra = {
 
 ---
 
- Support Section -->]
  <h2 align="center">☕ Support Me</h2>
 
 <p align="center">
