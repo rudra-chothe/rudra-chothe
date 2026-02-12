@@ -49,12 +49,12 @@ const rudra = {
 ### 📊 GitHub Stats
 
 <div align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=rudra0410&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" />
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=rudra0410&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" />
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=rudra-chothe&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" />
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=rudra-chothe&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" />
 </div>
 
 <div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com?user=rudra0410&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
+  <img src="https://github-readme-streak-stats.herokuapp.com?user=rudra-chothe&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
 </div>
 
 ---
@@ -65,11 +65,11 @@ const rudra = {
   
 | Project | Description | Tech Stack |
 |---------|-------------|------------|
-| [**Virtual Keyboard**](https://github.com/rudra0410/Virtual-Keyboard-using-OpenCV) | Hand gesture controlled keyboard using computer vision | Python, OpenCV |
-| [**Netflix Clone**](https://github.com/rudra0410/Netflix-Clone-using-HTML-and-CSS) | Pixel-perfect recreation of Netflix homepage | HTML, CSS |
-| [**Tic Tac Toe**](https://github.com/rudra0410/tic-tac-toe) | Interactive game with smooth animations | JavaScript |
+| [**Virtual Keyboard**](https://github.com/rudra-chothe/Virtual-Keyboard-using-OpenCV) | Hand gesture controlled keyboard using computer vision | Python, OpenCV |
+| [**Netflix Clone**](https://github.com/rudra-chothe/Netflix-Clone-using-HTML-and-CSS) | Pixel-perfect recreation of Netflix homepage | HTML, CSS |
+| [**Tic Tac Toe**](https://github.com/rudra-chothe/tic-tac-toe) | Interactive game with smooth animations | JavaScript |
 
-<a href="https://github.com/rudra0410?tab=repositories">
+<a href="https://github.com/rudra-chothe?tab=repositories">
   <img src="https://img.shields.io/badge/View_All_Projects-181717?style=for-the-badge&logo=github&logoColor=white"/>
 </a>
 
@@ -80,9 +80,9 @@ const rudra = {
 ### 🐍 Contribution Graph
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/rudra0410/rudra0410/output/github-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/rudra0410/rudra0410/output/github-snake.svg">
-  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/rudra0410/rudra0410/output/github-snake-dark.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/rudra-chothe/rudra-chothe/output/github-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/rudra-chothe/rudra-chothe/output/github-snake.svg">
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/rudra-chothe/rudra-chothe/output/github-snake-dark.svg">
 </picture>
 
 ---
@@ -124,7 +124,7 @@ I'm always open to interesting conversations and collaboration opportunities!
 ---
 
 <div align="center">
-  <img src="https://komarev.com/ghpvc/?username=rudra0410&color=58A6FF&style=flat-square&label=Profile+Views" alt="Profile views"/>
+  <img src="https://komarev.com/ghpvc/?username=rudra-chothe&color=58A6FF&style=flat-square&label=Profile+Views" alt="Profile views"/>
   
   <p><sub>Made with ❤️ by Rudra Chothe</sub></p>
 </div>
