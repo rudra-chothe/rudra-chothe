@@ -65,9 +65,9 @@ const rudra = {
   
 | Project | Description | Tech Stack |
 |---------|-------------|------------|
-| [**Virtual Keyboard**](https://github.com/rudra-chothe/Virtual-Keyboard-using-OpenCV) | Hand gesture controlled keyboard using computer vision | Python, OpenCV |
-| [**Netflix Clone**](https://github.com/rudra-chothe/Netflix-Clone-using-HTML-and-CSS) | Pixel-perfect recreation of Netflix homepage | HTML, CSS |
-| [**Tic Tac Toe**](https://github.com/rudra-chothe/tic-tac-toe) | Interactive game with smooth animations | JavaScript |
+| [**DermX AI– AI-Powered Dermatology Analysis System**](https://github.com/rudra-chothe/dermxai) | AI-based skin disease detection system using ResNet50, achieving high-accuracy multi-class classification | Python, TensorFlow, LLMs, RAG, Firebase, React |
+| [**MedHub– Smart Hospital Management System**](https://github.com/rudra-chothe/hospital-management) | A role-based hospital web platform for doctors, patients, and receptionists with secure authentication. Implemented appointment scheduling, medical record tracking, and automated report generation | Python, Flask, GEN-AI HTML, CSS, JavaScript |
+| [**Image Similarity Engine for Fashion Products**](https://github.com/rudra-chothe/image-search-engine) | A content-based image similarity system for fashion items using deep autoencoders | Python, FAISS |
 
 <a href="https://github.com/rudra-chothe?tab=repositories">
   <img src="https://img.shields.io/badge/View_All_Projects-181717?style=for-the-badge&logo=github&logoColor=white"/>
