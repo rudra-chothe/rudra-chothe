@@ -146,7 +146,7 @@ I build AI systems that run in production — not just in notebooks. RAG pipelin
 
 Built and **merged** an Android native library validation system for React Native apps (Android 14 alignment issues). Combines pre-build checks and ELF binary inspection. Now used in production Play Store deployments.
 
-**[NeatNode — CLI Tool](https://github.com/rudra-chothe)** &nbsp;·&nbsp; Backend & CI/CD
+**[NeatNode — CLI Tool](https://github.com/aakash-gupta02/NeatNode)** &nbsp;·&nbsp; Backend & CI/CD
 
 Fixed critical runtime bugs across middleware/controllers and implemented deterministic template handling with GitHub Actions CI/CD pipelines. Improved API reliability and DX.
 
