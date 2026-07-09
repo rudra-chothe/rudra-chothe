@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Export Business Website — Pricing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#0e1729;
+    --navy-900:#122036;
+    --navy-800:#1b2c48;
+    --navy-700:#28405f;
+    --paper:#fbf9f5;
+    --paper-dim:#f1ede3;
+    --ink:#14213d;
+    --slate:#5b6478;
+    --slate-soft:#8791a3;
+    --line:#e4ded0;
+    --line-dark:#2a3a58;
+    --brass:#c89b3c;
+    --brass-bright:#e0b559;
+    --brass-dim:#8c6b26;
+    --good:#4a7a5e;
+    --bad:#b9846a;
+    --radius:14px;
+    --side-pad: clamp(20px, 5vw, 32px);
+  }
+
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.02em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 var(--side-pad);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(1200px 500px at 15% -10%, rgba(200,155,60,0.14), transparent 60%),
+      linear-gradient(180deg, var(--navy-950), var(--navy-900));
+    color:var(--paper);
+    padding:clamp(56px, 10vw, 96px) 0 clamp(80px, 14vw, 120px);
+    position:relative;
+    overflow:hidden;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--brass-bright);
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:24px;height:1px;
+    background:var(--brass-bright);
+    flex-shrink:0;
+  }
+  .hero h1{
+    font-size:clamp(28px, 6vw, 54px);
+    line-height:1.08;
+    margin:0 0 18px;
+    max-width:14ch;
+    color:#fff;
+  }
+  .hero p.lede{
+    font-size:clamp(14.5px, 2.4vw, 17px);
+    line-height:1.65;
+    color:#c7cedb;
+    max-width:52ch;
+    margin:0 0 clamp(32px, 6vw, 48px);
+  }
+
+  /* Tier staircase — signature element: bar heights literally encode
+     relative scope/price across the four packages */
+  .staircase{
+    display:flex;
+    align-items:flex-end;
+    gap:clamp(8px, 2vw, 18px);
+    height:clamp(80px, 18vw, 130px);
+    margin-top:8px;
+  }
+  .stair{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+    min-width:0;
+  }
+  .stair .bar{
+    width:100%;
+    background:linear-gradient(180deg, var(--brass-bright), var(--brass-dim));
+    border-radius:4px 4px 0 0;
+    opacity:0.85;
+  }
+  .stair.dim .bar{
+    background:linear-gradient(180deg, #3a4a68, #223350);
+    opacity:0.9;
+  }
+  .stair .lbl{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:clamp(8.5px, 2vw, 11px);
+    letter-spacing:0.06em;
+    color:#8b95ab;
+    text-transform:uppercase;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width:100%;
+  }
+  .stair.active .lbl{color:var(--brass-bright);}
+
+  /* ---------- PRICING CARDS ---------- */
+  .pricing-section{
+    margin-top:clamp(-40px, -6vw, -64px);
+    position:relative;
+    z-index:2;
+    padding-bottom:clamp(48px, 8vw, 80px);
+  }
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
+    align-items:stretch;
+  }
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 22px 24px;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 1px 2px rgba(20,33,61,0.04);
+    transition:transform .25s ease, box-shadow .25s ease;
+    position:relative;
+    min-width:0;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 34px rgba(20,33,61,0.10);
+  }
+  .card .tier-index{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--slate-soft);
+    letter-spacing:0.1em;
+    margin-bottom:14px;
+  }
+  .card h3{
+    font-size:clamp(19px, 3vw, 22px);
+    margin:0 0 4px;
+  }
+  .card .for{
+    font-size:13.5px;
+    color:var(--slate);
+    margin-bottom:22px;
+  }
+  .card .price{
+    font-family:'Fraunces', serif;
+    font-size:clamp(26px, 4vw, 32px);
+    font-weight:600;
+    margin-bottom:2px;
+    word-break:break-word;
+  }
+  .card .price small{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:12px;
+    font-weight:500;
+    color:var(--slate-soft);
+    margin-left:4px;
+  }
+  .card .meta{
+    margin:20px 0 22px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    font-size:13.5px;
+    color:var(--slate);
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .card .meta > div{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .card .meta span{color:var(--ink); font-weight:500; text-align:right;}
+  .card .cta{
+    margin-top:auto;
+    display:block;
+    text-align:center;
+    padding:12px 18px;
+    border-radius:9px;
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    transition:background .2s ease, color .2s ease;
+  }
+  .card .cta:hover{background:var(--ink); color:#fff;}
+  .card .cta:active{transform:scale(0.98);}
+
+  /* Professional card — the highlighted tier per the brief's design tips,
+     executed with an elevated card rather than a generic blue outline */
+  .card.featured{
+    background:var(--navy-950);
+    border-color:var(--navy-950);
+    color:var(--paper);
+    transform:translateY(-14px);
+    box-shadow:0 26px 50px rgba(14,23,41,0.28);
+  }
+  .card.featured:hover{transform:translateY(-18px);}
+  .card.featured .tier-index{color:var(--brass-bright);}
+  .card.featured .for{color:#aab4c6;}
+  .card.featured .price{color:#fff;}
+  .card.featured .price small{color:#8b95ab;}
+  .card.featured .meta{border-color:var(--line-dark); color:#c7cedb;}
+  .card.featured .meta span{color:#fff;}
+  .card.featured .cta{background:var(--brass); border-color:var(--brass); color:var(--navy-950);}
+  .card.featured .cta:hover{background:var(--brass-bright);}
+  .badge{
+    position:absolute;
+    top:-13px; left:24px;
+    background:var(--brass);
+    color:var(--navy-950);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:5px 11px;
+    border-radius:100px;
+    white-space:nowrap;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head{
+    padding:clamp(48px, 9vw, 76px) 0 34px;
+    text-align:center;
+  }
+  .section-head .eyebrow{color:var(--brass-dim); justify-content:center;}
+  .section-head .eyebrow::before{background:var(--brass-dim);}
+  .section-head h2{
+    font-size:clamp(23px, 4vw, 34px);
+    margin:0 0 10px;
+  }
+  .section-head p{
+    color:var(--slate);
+    font-size:14.5px;
+    max-width:48ch;
+    margin:0 auto;
+    padding:0 8px;
+  }
+
+  /* ---------- COMPARISON TABLE ---------- */
+  .table-scroll{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:#fff;
+  }
+  table.compare{
+    width:100%;
+    min-width:720px;
+    border-collapse:collapse;
+    font-size:14px;
+  }
+  table.compare thead th{
+    position:sticky; top:0;
+    background:var(--paper);
+    z-index:3;
+  }
+  table.compare th, table.compare td{
+    padding:13px 16px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  table.compare th:first-child, table.compare td:first-child{
+    text-align:left;
+    position:sticky; left:0;
+    background:#fff;
+    z-index:2;
+    font-weight:500;
+    color:var(--ink);
+    min-width:200px;
+  }
+  table.compare thead th:first-child{background:var(--paper); z-index:4;}
+  table.compare thead tr th{
+    padding-top:20px;
+    padding-bottom:16px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:15px;
+    white-space:nowrap;
+  }
+  table.compare .col-sub{
+    display:block;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:400;
+    font-size:11.5px;
+    color:var(--slate-soft);
+    margin-top:2px;
+  }
+  table.compare .group-row td{
+    text-align:left;
+    background:var(--paper-dim);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--slate);
+    font-weight:500;
+    padding:9px 16px;
+  }
+  table.compare .group-row td:first-child{background:var(--paper-dim);}
+  table.compare tbody tr:not(.group-row):hover td{background:#faf8f3;}
+  table.compare tbody tr:not(.group-row):hover td.col-feat{background:#fdf6e8;}
+
+  /* Featured column highlight running the full length of the table */
+  table.compare td.col-feat, table.compare th.col-feat{
+    background:#fdf6e8;
+    box-shadow:inset 0 0 0 1px rgba(200,155,60,0.35);
+  }
+  table.compare thead th.col-feat{background:#fdf0d6;}
+
+  .yes, .no, .opt{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:20px; height:20px;
+    border-radius:50%;
+    font-size:12px;
+  }
+  .yes{background:rgba(74,122,94,0.13); color:var(--good);}
+  .no{color:var(--line);}
+  .opt{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    background:rgba(200,155,60,0.15);
+    color:var(--brass-dim);
+    width:auto; padding:2px 8px; border-radius:100px;
+    letter-spacing:0.04em;
+    white-space:nowrap;
+  }
+  .value-cell{font-size:13px; color:var(--slate); font-weight:500; white-space:nowrap;}
+
+  /* ---------- ADD-ONS ---------- */
+  .addons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 48px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:8px 28px;
+  }
+  .addon-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    padding:15px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .addon-row:last-child, .addons > div:nth-last-child(2) .addon-row:last-child{border-bottom:none;}
+  .addon-row span:first-child{min-width:0;}
+  .addon-row .price{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass-dim);
+    font-weight:500;
+    white-space:nowrap;
+    margin-left:16px;
+  }
+
+  /* ---------- NOTES ---------- */
+  .notes{
+    background:var(--paper-dim);
+    border-radius:var(--radius);
+    padding:clamp(24px, 5vw, 32px) clamp(20px, 5vw, 34px);
+  }
+  .notes h3{
+    font-size:15px;
+    margin:0 0 14px;
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--slate);
+  }
+  .notes ul{
+    margin:0; padding:0;
+    list-style:none;
+    display:flex; flex-direction:column; gap:11px;
+  }
+  .notes li{
+    font-size:14px;
+    color:var(--ink);
+    line-height:1.55;
+    padding-left:18px;
+    position:relative;
+  }
+  .notes li::before{
+    content:"—";
+    position:absolute; left:0;
+    color:var(--brass-dim);
+  }
+
+  /* ---------- CTA / FOOTER ---------- */
+  .cta-band{
+    margin-top:clamp(56px, 10vw, 90px);
+    background:linear-gradient(135deg, var(--navy-950), var(--navy-800));
+    border-radius:20px;
+    padding:clamp(36px, 8vw, 56px) clamp(24px, 6vw, 48px);
+    text-align:center;
+    color:#fff;
+  }
+  .cta-band h2{color:#fff; margin:0 0 10px; font-size:clamp(22px, 4vw, 28px);}
+  .cta-band p{color:#b9c2d3; margin:0 0 28px; font-size:14.5px;}
+  .cta-band .btn{
+    display:inline-block;
+    background:var(--brass);
+    color:var(--navy-950);
+    font-weight:700;
+    padding:13px 28px;
+    border-radius:9px;
+    text-decoration:none;
+    font-size:14.5px;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .cta-band .btn:hover{background:var(--brass-bright); transform:translateY(-2px);}
+  .cta-band .btn:active{transform:translateY(0);}
+
+  footer{
+    padding:40px 0 60px;
+    text-align:center;
+    color:var(--slate-soft);
+    font-size:12.5px;
+  }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+    .card, .card.featured, .cta-band .btn{transition:none;}
+  }
+
+  /* ================= RESPONSIVE BREAKPOINTS ================= */
+
+  /* Tablets / small laptops */
+  @media (max-width:920px){
+    .cards{grid-template-columns:1fr 1fr; gap:16px;}
+    .card.featured{transform:none; order:-1;}
+    .card.featured:hover{transform:translateY(-4px);}
+    .addons{padding:8px 22px;}
+  }
+
+  /* Large phones / small tablets (portrait) */
+  @media (max-width:680px){
+    .wrap{padding:0 var(--side-pad);}
+    .cards{grid-template-columns:1fr; gap:14px;}
+    .card{padding:24px 20px 22px;}
+    .card.featured{order:0;}
+    .addons{grid-template-columns:1fr; gap:0; padding:4px 20px;}
+    .addons > div:first-child .addon-row:last-child{border-bottom:1px solid var(--line);}
+    .staircase{height:auto; flex-wrap:wrap; row-gap:14px;}
+    .stair{flex:1 1 40%; min-width:120px;}
+    .stair .bar{height:28px !important;}
+    .section-head{padding-top:44px;}
+    table.compare{min-width:600px;}
+    .cta-band{border-radius:16px;}
+  }
+
+  /* Phones */
+  @media (max-width:480px){
+    :root{--radius:12px;}
+    .hero{padding-top:44px; padding-bottom:56px;}
+    .hero h1{max-width:100%;}
+    .badge{left:18px; top:-12px; font-size:9.5px; padding:4px 9px;}
+    .card{border-radius:12px;}
+    .card .meta > div{flex-direction:row;}
+    table.compare{min-width:540px; font-size:13px;}
+    table.compare th, table.compare td{padding:11px 12px;}
+    table.compare th:first-child, table.compare td:first-child{min-width:170px;}
+    .notes{padding:22px 18px;}
+    .cta-band{padding:30px 20px;}
+    .cta-band .btn{width:100%;}
+    footer{padding:32px 0 44px;}
+  }
+
+  /* Very small phones */
+  @media (max-width:360px){
+    .stair{flex:1 1 100%;}
+    .staircase{row-gap:10px;}
+  }
+
+  /* Landscape phones - keep hero compact */
+  @media (max-height:480px) and (orientation:landscape){
+    .hero{padding-top:32px; padding-bottom:40px;}
+    .staircase{height:70px;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Website Packages</div>
+    <h1>Pricing built for export businesses, at every stage of growth</h1>
+    <p class="lede">Four packages, one clear upgrade path — from a lean six-page starter site to a fully custom platform with CRM, tracking, and multi-language buyers portals.</p>
+
+    <div class="staircase">
+      <div class="stair"><div class="bar" style="height:34px;"></div><div class="lbl">01 · Starter</div></div>
+      <div class="stair active"><div class="bar" style="height:64px;"></div><div class="lbl">02 · Professional</div></div>
+      <div class="stair"><div class="bar" style="height:92px;"></div><div class="lbl">03 · Enterprise</div></div>
+      <div class="stair dim"><div class="bar" style="height:112px;"></div><div class="lbl">04 · Custom</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section">
+  <div class="wrap">
+    <div class="cards">
+
+      <div class="card reveal">
+        <div class="tier-index">Tier 01</div>
+        <h3>Starter</h3>
+        <div class="for">Small exporters</div>
+        <div class="price">₹8,499</div>
+        <div class="meta">
+          <div>Pages <span>Up to 6</span></div>
+          <div>Delivery <span>10–14 days</span></div>
+          <div>Support <span>1 month</span></div>
+        </div>
+        <a href="#compare" class="cta">Compare features</a>
+      </div>
+
+      <div class="card featured reveal">
+        <div class="badge">Most Popular</div>
+        <div class="tier-index">Tier 02</div>
+        <h3>Professional</h3>
+        <div class="for">Growing export businesses</div>
+        <div class="price">₹13,999</div>
+        <div class="meta">
+          <div>Pages <span>Up to 15</span></div>
+          <div>Delivery <span>3–4 weeks</span></div>
+          <div>Support <span>2 months</span></div>
+        </div>
+        <a href="#compare" class="cta">Compare features</a>
+      </div>
+
+      <div class="card reveal">
+        <div class="tier-index">Tier 03</div>
+        <h3>Enterprise</h3>
+        <div class="for">Large manufacturers &amp; exporters</div>
+        <div class="price">₹24,999</div>
+        <div class="meta">
+          <div>Pages <span>Unlimited</span></div>
+          <div>Delivery <span>5–6 weeks</span></div>
+          <div>Support <span>3 months</span></div>
+        </div>
+        <a href="#compare" class="cta">Compare features</a>
+      </div>
+
+      <div class="card reveal">
+        <div class="tier-index">Tier 04</div>
+        <h3>Custom</h3>
+        <div class="for">Enterprise businesses</div>
+        <div class="price">Custom Quote</div>
+        <div class="meta">
+          <div>Pages <span>Unlimited</span></div>
+          <div>Delivery <span>Based on scope</span></div>
+          <div>Support <span>Custom</span></div>
+        </div>
+        <a href="#compare" class="cta">Compare features</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Feature Breakdown</div>
+      <h2>Every feature, side by side</h2>
+      <p>The Professional column is highlighted throughout — it's the recommended package for most export businesses.</p>
+    </div>
+
+    <div class="table-scroll reveal">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Starter</th>
+            <th class="col-feat">Professional</th>
+            <th>Enterprise</th>
+            <th>Custom</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr class="group-row"><td colspan="5">Foundation</td></tr>
+          <tr><td>Responsive website</td><td><span class="yes">✓</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Custom UI/UX design</td><td><span class="yes">✓</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Mobile friendly design</td><td><span class="yes">✓</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>SEO friendly structure</td><td><span class="yes">✓</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Home / About / Products / Contact</td><td><span class="yes">✓</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Additional pages</td><td class="value-cell">Up to 6</td><td class="col-feat value-cell">Up to 15</td><td class="value-cell">Unlimited</td><td class="value-cell">Unlimited</td></tr>
+
+          <tr class="group-row"><td colspan="5">Catalog &amp; Inquiries</td></tr>
+          <tr><td>Product categories</td><td><span class="no">–</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Product detail pages</td><td><span class="yes">✓</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Product search &amp; filters</td><td><span class="no">–</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Unlimited products</td><td><span class="no">–</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Request for Quote (RFQ)</td><td><span class="yes">✓</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Contact inquiry form</td><td><span class="yes">✓</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>WhatsApp integration</td><td><span class="yes">✓</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Google Maps</td><td><span class="yes">✓</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+
+          <tr class="group-row"><td colspan="5">Trust &amp; Content Pages</td></tr>
+          <tr><td>Gallery</td><td><span class="no">–</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Blog module</td><td><span class="no">–</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Export countries page</td><td><span class="no">–</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Certifications page</td><td><span class="no">–</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Quality assurance page</td><td><span class="no">–</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Infrastructure page</td><td><span class="no">–</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Export process page</td><td><span class="no">–</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>FAQ page</td><td><span class="no">–</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Google Analytics</td><td><span class="no">–</span></td><td class="col-feat"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Speed optimization</td><td class="value-cell">Basic</td><td class="col-feat value-cell">Advanced</td><td class="value-cell">Advanced</td><td class="value-cell">Custom</td></tr>
+
+          <tr class="group-row"><td colspan="5">Admin &amp; Management</td></tr>
+          <tr><td>Admin dashboard</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Dashboard analytics</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Product management</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Category management</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Inquiry management</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Blog management</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Gallery management</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Homepage content management</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Team management</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Downloadable product catalogue</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Role-based admin access</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Backup system</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Performance monitoring</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Deployment assistance</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+
+          <tr class="group-row"><td colspan="5">Advanced &amp; Integrations</td></tr>
+          <tr><td>Multi-language support</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="opt">Optional</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>API integrations</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="opt">Optional</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>CRM / ERP integration</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="opt">Optional</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Payment gateway</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="opt">Optional</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>Shipment tracking</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="opt">Optional</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td>AI chatbot</td><td><span class="no">–</span></td><td class="col-feat"><span class="no">–</span></td><td><span class="opt">Optional</span></td><td><span class="yes">✓</span></td></tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Add-ons</div>
+      <h2>Extend any package</h2>
+      <p>Add specific capabilities to Starter or Professional without moving up a full tier.</p>
+    </div>
+
+    <div class="addons reveal">
+      <div>
+        <div class="addon-row"><span>Additional page</span><span class="price">₹1,000 / page</span></div>
+        <div class="addon-row"><span>Product upload</span><span class="price">₹100 / product</span></div>
+        <div class="addon-row"><span>Admin dashboard</span><span class="price">₹4,000</span></div>
+        <div class="addon-row"><span>Blog module</span><span class="price">₹3,000</span></div>
+        <div class="addon-row"><span>Product search &amp; filters</span><span class="price">₹2,000</span></div>
+        <div class="addon-row"><span>PDF product catalogue</span><span class="price">₹2,500</span></div>
+      </div>
+      <div>
+        <div class="addon-row"><span>Multi-language support</span><span class="price">₹5,000</span></div>
+        <div class="addon-row"><span>Google Analytics setup</span><span class="price">₹2,000</span></div>
+        <div class="addon-row"><span>Advanced SEO</span><span class="price">₹3,000</span></div>
+        <div class="addon-row"><span>Hosting &amp; Domain</span><span class="price">₹2,000</span></div>
+        <div class="addon-row"><span>Annual maintenance (Optional)</span><span class="price">₹10,000 – ₹15,000</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="notes reveal">
+      <h3>Notes</h3>
+      <ul>
+        <li>Prices are indicative and may vary based on project scope.</li>
+        <li>Domain, hosting, premium plugins, third-party APIs, and paid services are charged separately unless mentioned in the proposal.</li>
+        <li>Any additional functionality beyond the selected package will be quoted separately.</li>
+        <li>Source code ownership is transferred upon final payment unless agreed otherwise.</li>
+        <li>A detailed project timeline and milestone plan will be shared before project commencement.</li>
+      </ul>
+    </div>
+
+    <div class="cta-band reveal">
+      <h2>Not sure which package fits?</h2>
+      <p>Tell us your product range and export markets — we'll recommend a tier.</p>
+      <a href="tel:+918956035604" class="btn">Request a Custom Quote</a>
+    </div>
+  </div>
+</section>
+
+<footer></footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
